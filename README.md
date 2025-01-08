@@ -98,6 +98,8 @@ Because the Bridge uses for now a forked version of Aligned, you may need to set
 
 You will need two Ethereum accounts: One to fund the Aligned operator (`operator_account_address`) and another to fund the Aligned batcher (`batcher_account_address`).
 
+-> * In ubuntu 22.4, make deps and others not worked propoerly, had to do it manually & out of make files.
+
 1. Clone the [forked Aligned repo](https://github.com/lambdaclass/aligned_layer). Checkout to the `mina` branch.
 1. Run:
 
@@ -111,6 +113,8 @@ You will need two Ethereum accounts: One to fund the Aligned operator (`operator
     cp contracts/lib/eigenlayer-middleware/lib/eigenlayer-contracts/script/configs/holesky/Holesky_current_deployment.config.json contracts/script/output/holesky
     ```
 
+    -> * Here, a guide where you can create your <operator_address> etc. is needed since it will be needed in the following parts. *
+     
 1. Set `contracts/script/deploy/config/holesky/aligned.holesky.config.json` to:
 
     ```json
@@ -149,6 +153,10 @@ You will need two Ethereum accounts: One to fund the Aligned operator (`operator
     }
     ```
 
+->  * PRIVATE_KEY generation, how to set up the operator (the ones mentioned before will be better. Especially for Batcher service, there is few information how to set it up in the official documents). *
+->  * Also, in the .env file there is an RPC_URL Where it is not clarified imo. *
+
+
 1. Setup the `contracts/scripts/.env` file. A template is available in `contracts/scripts/.env.example.holesky`. Set `PRIVATE_KEY` to the private key of the account you chose to fund the operator (the one with address `operator_account_address`).
 1. Deploy the contracts with `make deploy_aligned_contracts`.
 
@@ -172,7 +180,7 @@ You will need two Ethereum accounts: One to fund the Aligned operator (`operator
     }
   }
  ```
-
+->  * Are those the ones used in <operator_account_address> as previous? *
 1. Create 3 EigenLayer keystores:
     1. Aggregator and operator ECDSA:
 
@@ -332,6 +340,7 @@ You will need two Ethereum accounts: One to fund the Aligned operator (`operator
     ```sh
     make operator_whitelist OPERATOR_ADDRESS=<operator_account_address>
     ```
+-> * Since i don't have a working operator & system is not working at the moment, can't try this part.
 
 1. Deposit Strategy tokens for the operator. Follow [this section from the AlignedLayer docs](https://docs.alignedlayer.com/operators/0_running_an_operator#step-4-deposit-strategy-tokens).
 
